@@ -1,0 +1,59 @@
+/* TYPOHGRAPHY */
+
+@font-face {
+    font-family: impact;
+    src: url(../css/fonts/impact/impact.ttf);
+}
+
+@font-face {
+    font-family: montserrat;
+    src: url(../css/fonts/montserrat/Montserrat-regular.ttf);
+}
+
+@font-face {
+    font-family: fa;
+    src: url(../css/fonts/font-awsome/fa-brands-400.ttf);
+}
+
+body {
+    margin: 0;
+    font-family: montserrat, sans-serif;
+}
+
+
+
+
+.logo img {
+    width: 20vw;
+    height: 5vh;
+}
+
+/* HEADER */
+.main-nav li {
+margin-right: 15px;
+}
+
+
+/* HELPERS */
+
+/* flex helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+/* list helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
