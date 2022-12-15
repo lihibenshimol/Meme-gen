@@ -1,5 +1,5 @@
 function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.editor›-container')
     gElCanvas.width = elContainer.offsetWidth - 20
 }
 
@@ -12,10 +12,8 @@ function onClearCanvas() {
 }
 
 function onDownloadCanvas(elLink) {
-    // Gets the canvas content and convert it to base64 data URL that can be save as an image
-    const data = gElCanvas.toDataURL() // Method returns a data URL containing a representation of the image in the format specified by the type parameter.
-    elLink.href = data // Put it on the link
-    // elLink.download = 'shuki' // Can change the name of the file
+    const data = gElCanvas.toDataURL()
+    elLink.href = data 
 }
 
 function addMouseListeners() {
