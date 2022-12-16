@@ -8,3 +8,9 @@ function renderGallery() {
     });
     document.querySelector('.gallery-grid').innerHTML = strHTML
 }
+
+function filtergImgs(keyword) {
+console.log('keyword = ', keyword)
+    searchMeme(keyword)
+    renderGallery()
+}

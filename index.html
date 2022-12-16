@@ -27,8 +27,15 @@
 
         <form class="search-box grid" onsubmit="onSearchMeme(event)">
             <input class="search" type="search" name="meme-search" placeholder="Search by keyword">
-            <!-- <button class="search-btn btn">Search</button> -->
         </form>
+
+        <div class="searched-show flex">
+            <span class="keys funny" id="funny" style="font-size: 24px;" onclick="filtergImgs(this.id)">Funny</span>
+            <span class="keys trump" id="trump" style="font-size: 16px;" onclick="filtergImgs(this.id)">Trump</span>
+            <span class="keys spongebob" id="spongebob" style="font-size: 20px;" onclick="filtergImgs(this.id)">Spongebob</span>
+            <span class="keys cartoon" id="cartoon" style="font-size: 14px;" onclick="filtergImgs(this.id)">Cartoon</span>
+            <span class="keys animals" id="animals" style="font-size: 18px;" onclick="filtergImgs(this.id)">Animals</span>
+        </div>
 
         <div class="gallery-grid grid"></div>
     </section>

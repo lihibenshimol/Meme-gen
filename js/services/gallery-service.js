@@ -50,7 +50,7 @@ function setgFilter(filterBy) {
 
 function getgImgs() {
     if (!gFilterBy) gFilterBy = 'meme'
-    const imgs = gImgs.filter(img => img.keywords.includes(gFilterBy))
+    const imgs = gImgs.filter(img => img.keywords.includes(gFilterBy.toLowerCase()))
     return imgs
 }
 
