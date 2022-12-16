@@ -79,7 +79,7 @@ function moveLine(diff) {
 
 function addLineTogMeme(isEmptyLines) {
     const elCanvas = getgElCanvas();
-    const yPos = (gMeme.lines.length === 1) ? elCanvas.height - 20 : elCanvas.height / 2;
+    var yPos = (gMeme.lines.length === 1) ? elCanvas.height - 20 : elCanvas.height / 2;
     if (gMeme.lines.length === 0) yPos = 50;
     gMeme.lines.push({
         text: 'NEW LINE',
@@ -103,10 +103,19 @@ function switchLine(diff) {
 }
 
 function deleteLine(selectedLineIdx) {
-    console.log('se,lectedLineIdx = ', selectedLineIdx)
+    if (gMeme.lines.length === 1 && gMeme.lines[0].text === '') return;
     const line = gMeme.lines[selectedLineIdx]
+    const currlineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(line, 1)
-    // document.querySelector('.text-editor').placeholder = '';
+    if (gMeme.lines.length) {
+        // renderCanvas()
+        if (currlineIdx) {
+            gMeme.selectedLineIdx = currlineIdx - 1;
+        } else {
+            gMeme.selectedLineIdx = 0;
+        }
+    }
+    if (!gMeme.lines.length) addLineTogMeme(true)
 }
 
 //* GENERAL
