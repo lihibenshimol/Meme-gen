@@ -39,7 +39,7 @@ function _createImgs() {
 }
 
 function _createImg(keywords) {
-    return { id: gImgId++, url: `img/${gImgId}.png`, keywords }
+    return { id: gImgId++, url: `img/memes/${gImgId}.png`, keywords }
 }
 
 function setgFilter(filterBy) {

@@ -62,7 +62,7 @@
 }
 
 body {
-    margin: 0;
+    margin: 0 ;
     font-family: montserrat, sans-serif;
     /* background-color: #1f161feb; */
     background-color: var(--clr0);
@@ -98,6 +98,8 @@ a {
 
 .main-layout>*:not(.full) {
     max-width: 1125px;
+    margin-inline-start: 4em;
+
 }
 
 /* HEADER */
@@ -347,6 +349,7 @@ footer {
 
 @media (max-width: 550px) {
     .main-layout>*:not(.full) {
+        margin: 0;
         max-width: 600px;
     }
 
@@ -359,6 +362,11 @@ footer {
         grid-template-columns: repeat(auto-fit, 100px);
         grid-template-rows: repeat(2, 100px);
         gap: 10px;
+    }
+
+
+    .searched-show {
+        max-width: 90vw;
     }
 
     .canvas {
