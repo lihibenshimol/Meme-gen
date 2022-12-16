@@ -11,22 +11,26 @@
 </head>
 
 <body class="main-layout" onload="onInit()">
-    <header class=" main-header">
-    <div class="header-container flex align-center space-between">
-        <div onclick="backToGallery()" class="logo"> <img src="img/logo/logo.png" alt="logo"></div>
-        <nav class="main-nav flex align-center">
-            <ul class="flex clean-list">
-                <li onclick="backToGallery()">Gallery</li>
-                <li>About</li>
-            </ul>
-        </nav>
-    </div>
+    <header class=" main-header full">
+        <div class="header-container flex align-center space-between">
+            <div onclick="backToGallery()" class="logo"> <img src="img/logo/logo.png" alt="logo"></div>
+            <nav class="main-nav flex align-center">
+                <ul class="flex clean-list">
+                    <li onclick="backToGallery()">Gallery</li>
+                    <li>About</li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="gallery-container">
-        <div class="gallery-grid grid">
-            
-        </div>
+
+        <form class="search-box grid" onsubmit="onSearchMeme(event)">
+            <input class="search" type="search" name="meme-search" placeholder="Search by keyword">
+            <!-- <button class="search-btn btn">Search</button> -->
+        </form>
+
+        <div class="gallery-grid grid"></div>
     </section>
 
     <section class="editor-container hide">
@@ -35,78 +39,112 @@
         <section class="control-box grid">
 
             <input oninput="onSetLineText(this.value)" class="text-editor" type="text" placeholder="Enter text here..">
-            <div class="btns-editor">
+            <div class="btns-editor grid">
 
-                <button class="btn" onclick="onAddLineTogMeme()">
+                <button class="add btn" onclick="onAddLineTogMeme()">
                     <img class="icon" src="img/icons/new.png" alt="">
                 </button>
 
-                <button class="btn" onclick="onDeleteLine()">
+                <button class="delete btn" onclick="onDeleteLine()">
                     <img class="icon" src="img/icons/trash.png" alt="">
                 </button>
-                <button onclick="onSwitchLine(1)">
+                <button class="switch btn" onclick="onSwitchLine(1)">
                     <img class="icon" src="img/icons/upDown.png" alt="">
                 </button>
-                <select onchange="onChangeFontFamily(this.value)" class="fonts">
+                <select onchange="onChangeFontFamily(this.value)" class="select-fonts">
                     <option value="impact">impact</option>
                     <option value="arial">arial</option>
                     <option value="georgia">georgia</option>
                     <option value="verdana">verdana</option>
+                    <option value="martin">martin</option>
+                    <option value="kalam">kalam</option>
                 </select>
-        
+
             </div>
 
-            <div class="style-editor">
-                <button class="btn" onclick="onChangeFontSize(2)">
+            <div class="style-editor grid">
+                <button class=" font1 btn" onclick="onChangeFontSize(2)">
                     <img class="icon" src="img/icons/plus.png" alt=" ">
                 </button>
 
-                <button class="btn" onclick="onChangeFontSize(-2)">
+                <button class="font2 btn" onclick="onChangeFontSize(-2)">
                     <img class="icon" src="img/icons/minus.png" alt=" ">
                 </button>
 
-                <button class="btn" onclick="onChangeAlign(this.id)" id="left">
+                <button class="move1 btn" onclick="onMoveLine(-5)">
+                    <img class="icon" src="img/icons/arrow-up.png" alt=" ">
+                </button>
+
+                <button class="move2 btn" onclick="onMoveLine(5)">
+                    <img class="icon" src="img/icons/arrow-down.png" alt=" ">
+                </button>
+
+                <button class="align1 btn" onclick="onChangeAlign(this.id)" id="left">
                     <img class="icon" src="img/icons/align-left.png" alt=" ">
                 </button>
 
-                <button class="btn" onclick="onChangeAlign(this.id)" id="center">
+                <button class="align2 btn" onclick="onChangeAlign(this.id)" id="center">
                     <img class="icon" src="img/icons/align-center.png" alt=" ">
                 </button>
 
-                <button onclick="onChangeAlign(this.id)" id="right">
-                        <img class="icon" src="img/icons/align-right.png" alt=" ">
+                <button class="align3 btn" onclick="onChangeAlign(this.id)" id="right">
+                    <img class="icon" src="img/icons/align-right.png" alt=" ">
                 </button>
 
-                <!-- <button class="btn" onclick="openColorPicker('stroke-color')">
+                <button class="color btn" onclick="toggleColorPicker('fill-color')">
                     <img class="icon" src="img/icons/stroke.png" alt=" ">
-                    <input hidden type="color" id="stroke-color" onchange="onChangeStrokeColor(this.value)">
-                </button> -->
-
-                    <button class="btn" onclick="openColorPicker('fill-color')">
-                        <img class="icon" src="img/icons/stroke.png" alt=" ">
-                    <input hidden type="color" id="fill-color" onchange="onChangeFillColor(this.value)">
-                    </button>
+                    <input hidden type="color" id="fill-color">
+                </button>
             </div>
 
 
 
             <div class="stickers grid">
-        <article class="item item1">⭐️</article>
-        <article class="item item2">⭐️</article>
-        <article class="item item3">⭐️</article>
-        <article class="item item3">⭐️</article>
-        <article class="item item4">⭐️</article>
+                <article class="item item1">⭐️</article>
+                <article class="item item2">⭐️</article>
+                <article class="item item3">⭐️</article>
+                <article class="item item3">⭐️</article>
+                <article class="item item4">⭐️</article>
             </div>
 
             <div class="meme-options">
-                <button class=" share btn" onclick="onShareImg()"> Share</button>
-                <button>
-                    <a href="#" onclick="onDownloadCanvas(this)" download="my-img">Download image</a> <br>
+                <button class="share btn" onclick="onShareImg()">Share</button>
+                <button class="download btn">
+                    <a href="#" onclick="onDownloadCanvas(this)" download="my-img">Download</a>
                 </button>
             </div>
 
         </section>
     </section>
+
+    <section class="me full">
+            <div class="about-me grid">
+              <img class="me-img" src="img/me/me.jpg" alt="">
+
+                <div class="social-buttons">
+
+                    <button class="fa facebook btn">
+                        <a href="https://www.facebook.com/lihi2627/" target="_blank"> </a>
+                    </button>
+                    
+                    <button class="fa linkedin btn">
+                        <a href="https://www.linkedin.com/in/lihi-ben-shimol" target="_blank"> </a>
+                    </button>
+                </div>
+        
+
+          <div class="about-description">
+              <p class="name">Lihi Ben Shimol</p><p class="desc">I'm 24 years old from Tel Aviv,
+              currently a fullsatck development student at Coding Academy. <br>
+              I'm a fast and enthusiastic learner and I strive to fulfill and maximize myself in the field.</p>    
+          </div>
+        </div>
+    </section>
+
+    <footer class="full">
+        <div onclick="backToGallery()" class="footer logo"> <img src="img/logo/logo.png" alt="logo"></div>
+        <p>all rigths reserved 2022</p>
+    </footer>
 
 
 

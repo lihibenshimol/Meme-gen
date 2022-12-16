@@ -3,20 +3,17 @@
 
 var gImgs
 var gMeme
-
-var gLineId
-var gFillColor = 'white'
 var gFontSize = 40
 
-function updateMeme(elImg ,imgId) {
-    var elCanvas = getgElCanvas();
+function updateMeme(elImg, imgId) {
+    let elCanvas = getgElCanvas();
     gMeme = {
         selectedImgId: imgId,
         selectedLineIdx: 0,
         elImg,
         lines: [
             {
-                text: 'when your code works',
+                text: `WHEN YOUR CODE WORKS`,
                 font: 'impact',
                 size: gFontSize,
                 align: 'center',
@@ -26,7 +23,7 @@ function updateMeme(elImg ,imgId) {
                 y: 40,
             },
             {
-                text: 'and you dont know why',
+                text: `AND YOU DON'T KNOW WHY`,
                 font: 'impact',
                 size: gFontSize,
                 align: 'center',
@@ -39,21 +36,21 @@ function updateMeme(elImg ,imgId) {
     }
 }
 
-function getImg() {
-    return gMeme.elImg
+function searchMeme(searchInput) {
+    setgFilter(searchInput)
 }
 
+//* GMEME UPDATES
+
 function setLineText(text) {
-    console.log('works?');
     gMeme.lines[gMeme.selectedLineIdx].text = text
-    writeText(gMeme.selectedLineIdx)
+    // writeText(gMeme.selectedLineIdx)
 }
 
 function changeFontSize(diff) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
     if (line.size <= 20 || line.size > 50)
-    line.size += diff
-    console.log('line.size = ', line.size)
+        line.size += diff
     gMeme.lines[gMeme.selectedLineIdx].size += diff
 }
 
@@ -68,12 +65,24 @@ function changeFontFamily(font) {
     line.font = font
 }
 
+function changeAlign(align) {
+    let line = gMeme.lines[gMeme.selectedLineIdx]
+    line.align = align
+}
+
+function moveLine(diff) {
+    let line = gMeme.lines[gMeme.selectedLineIdx]
+    line.y += diff
+}
+
+//* CHANGES ON GMEME.LINES
+
 function addLineTogMeme(isEmptyLines) {
-    var elCanvas = getgElCanvas();
-    var yPos = (gMeme.lines.length === 1) ? elCanvas.height - 20 : elCanvas.height / 2;
+    const elCanvas = getgElCanvas();
+    const yPos = (gMeme.lines.length === 1) ? elCanvas.height - 20 : elCanvas.height / 2;
     if (gMeme.lines.length === 0) yPos = 50;
     gMeme.lines.push({
-        text: 'another',
+        text: 'NEW LINE',
         font: 'impact',
         size: gFontSize,
         align: 'center',
@@ -83,31 +92,24 @@ function addLineTogMeme(isEmptyLines) {
         y: yPos,
     })
     if (!isEmptyLines) gMeme.selectedLineIdx = gMeme.lines.length - 1;
-    console.log('gMeme.lines = ', gMeme.lines)
     // writeText(gMeme.selectedLineIdx)
 }
 
 function switchLine(diff) {
-    console.log('befor= ', gMeme.selectedLineIdx)
     gMeme.selectedLineIdx += diff
     if (gMeme.selectedLineIdx >= gMeme.lines.length) {
         gMeme.selectedLineIdx = 0
     }
 }
 
-
 function deleteLine(selectedLineIdx) {
-    console.log('gMeme.lines[selectedLineIdx] = ', gMeme.lines[selectedLineIdx])
-    // debugger
+    console.log('se,lectedLineIdx = ', selectedLineIdx)
     const line = gMeme.lines[selectedLineIdx]
-    // const lineIdx = gMeme.lines.findIndex(lineIdx => lineIdx === selectedLineIdx)
-    // console.log('lineIdx = ', lineIdx)
-    // if (lineIdx < 0) return
     gMeme.lines.splice(line, 1)
-    document.querySelector('.text-editor').placeholder = '';
-    renderCanvas()
-    console.log('gMeme.lines = ', gMeme.lines)
+    // document.querySelector('.text-editor').placeholder = '';
 }
+
+//* GENERAL
 
 function getgMeme() {
     return gMeme
@@ -115,4 +117,8 @@ function getgMeme() {
 
 function getSelectedLineIdx() {
     return gMeme.selectedLineIdx
+}
+
+function getImg() {
+    return gMeme.elImg
 }
