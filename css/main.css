@@ -171,10 +171,14 @@ a {
     height: 160px;
     width: 160px;
     cursor: pointer;
+    transition: .4s;
+}
+
+.gallery-img:hover {
+    border: inset 3px rgba(131, 131, 131, 0.272);
 }
 
 .gallery-grid {
-    /* border: groove 1px orange; */
     width: 90vw;
     margin-top: 30px;
     grid-template-columns: repeat(auto-fit, 160px);
@@ -202,7 +206,6 @@ a {
 .search {
     min-width: 22rem;
     height: 40px;
-    /* background-image: linear-gradient(16deg, #441844, rgba(239, 71, 0, 0.85)); */
     background-color: #4f364feb;
     border-radius: 10px;
     color: var(--clr1);
@@ -239,18 +242,6 @@ canvas {
     border-radius: 8px;
 }
 
-.stickers {
-    background-color: var(--clr2);
-    grid-template-columns: repeat(5, 40px);
-    gap: 10px;
-    font-size: 40px;
-    height: 10vh;
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: 1px 0px 4px 2px rgba(0, 0, 0, 0.451);
-
-}
-
 .control-box {
     box-shadow: 1px 0px 4px 2px rgba(0, 0, 0, 0.451);
     justify-content: space-evenly;
@@ -262,7 +253,6 @@ canvas {
         "text-editor"
         "btns-editor"
         "style-editor"
-        "stickers"
         "meme-options"
     ;
     grid-template-columns: max-content;
@@ -399,12 +389,6 @@ footer {
         gap: 10px;
         min-width: 60vw;
         align-self: center;
-    }
-
-    .stickers {
-        height: 50px;
-        font-size: 2em;
-        /* font-size: 30px; */
     }
 
     .me-img {

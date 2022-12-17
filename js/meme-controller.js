@@ -77,6 +77,7 @@ function onChangeFontSize(diff) {
 }
 
 function onChangeFontFamily(font) {
+    console.log('font = ', font)
     changeFontFamily(font)
     renderCanvas()
 }
