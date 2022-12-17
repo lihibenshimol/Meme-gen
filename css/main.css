@@ -349,8 +349,9 @@ footer {
 
 @media (max-width: 550px) {
     .main-layout>*:not(.full) {
-        margin: 0;
+        /* margin: 0; */
         max-width: 600px;
+        margin-inline-start: auto;
     }
 
     .gallery-img {
@@ -366,7 +367,7 @@ footer {
 
 
     .searched-show {
-        max-width: 90vw;
+        max-width: 100vw;
     }
 
     .canvas {
