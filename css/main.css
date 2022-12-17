@@ -219,7 +219,11 @@ a {
     height: 40px;
     background-image: linear-gradient(16deg, #441844, rgba(239, 71, 0, 0.85));
     color: var(--clr1);
+    width: 90px;
+}
 
+.file-input{
+    width: 10px;
 }
 
 .searched-show {
@@ -230,6 +234,10 @@ a {
     border-radius: 20px;
     color: var(--clr1);
     padding: 10px;
+}
+
+.keys {
+    cursor: pointer;
 }
 
 /* CANVAS */
@@ -334,6 +342,7 @@ footer {
 }
 
 @media (min-width: 500px) {
+
     body {
         margin: 0;
     }
@@ -351,7 +360,6 @@ footer {
 
 @media (max-width: 550px) {
     .main-layout>*:not(.full) {
-        /* margin: 0; */
         max-width: 600px;
         margin-inline-start: auto;
     }
@@ -368,9 +376,12 @@ footer {
         /* color: #ffffff81; */
     }
 
-
     .searched-show {
         max-width: 100vw;
+    }
+
+    .search {
+        min-width: 15rem;
     }
 
     .canvas {
@@ -382,7 +393,7 @@ footer {
         align-items: center;
         flex-direction: column;
         width: 100px;
-        margin-top: 60px;
+        margin-top: 30px;
     }
 
     .control-box {
