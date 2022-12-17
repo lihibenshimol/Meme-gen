@@ -9,14 +9,14 @@ function onInit() {
     renderGallery()
 }
 
-function renderCanvas() { //img
-    //    if(!getgMemeLinesLength())
+function renderCanvas(withRect = true) {
     var meme = getgMeme()
+    // document.querySelector('.text-editor').placeholder = meme.lines[meme.selectedLineIdx].text
     document.querySelector('.text-editor').value = meme.lines[meme.selectedLineIdx].text
+    const y = meme.lines[meme.selectedLineIdx].y
     var img = getImg()
     drawImg(img)
-    // drawRect()
-    // renderMeme()
+    if (withRect) drawRect(0, y - 40)
     writeText()
 }
 
@@ -30,20 +30,17 @@ function renderMeme() { //img and default text
 }
 
 function openEditor(elImg, imgId) {
-    console.log('elImgId = ', imgId)
     if (document.querySelector('.editor-container').classList.contains('hide')) {
         document.querySelector('.editor-container').classList.add('flex')
         document.querySelector('.gallery-container').classList.add('hide')
         document.querySelector('.me').classList.remove('grid')
         document.querySelector('.me').classList.add('hide')
-
     }
     drawImg(elImg)
-    updateMeme(elImg, imgId) //set elimg as the current gMeme
+    updateMeme(elImg, imgId)
     renderCanvas()
 }
 
-// function writeText(lineIdx) {
 function writeText() {
     let meme = getgMeme()
     let memeLines = meme.lines
@@ -59,32 +56,11 @@ function writeText() {
     })
 }
 
-function onSearchMeme(ev) {
-    ev.preventDefault()
-    const elSearchInput = document.querySelector('.search')
-    const searchInput = elSearchInput.value
-    // if (!searchInput) searchMeme('meme')
-    searchMeme(searchInput)
-    renderGallery()
-}
-
 //* SETTINGS ON TEXT
 
 function onSetLineText(text) {
-    // document.querySelector('.text-editor').value = '';
     setLineText(text.toUpperCase())
-    // renderMeme()
     renderCanvas()
-}
-
-function toggleColorPicker(type) {
-    const elColorPicker = document.getElementById(`${type}`)
-    if (elColorPicker.hidden) {
-        elColorPicker.hidden = false
-    } else {
-        elColorPicker.hidden = true
-    }
-    changeColor()
 }
 
 function changeColor() {
@@ -115,17 +91,22 @@ function onMoveLine(diff) {
     renderCanvas()
 }
 
+function drawRect(x, y) {
+    gCtx.beginPath()
+    gCtx.fillStyle = '#ffffff81'
+    gCtx.fillRect(x, y, gElCanvas.width, 50)
+    gCtx.strokeStyle = 'black'
+   
+    gCtx.strokeRect(x, y, gElCanvas.width, 50)
+}
+
 //* LINE IDX CHANGES
 function onAddLineTogMeme() {
-    document.querySelector('.text-editor').placeholder = 'type';
     addLineTogMeme(false)
     renderCanvas()
 }
 
 function onSwitchLine(diff) {
-    const meme = getgMeme()
-    var lineIdx = meme.selectedLineIdx
-    var memeline = meme.lines[lineIdx]
     switchLine(diff)
     renderCanvas()
 }
@@ -159,6 +140,12 @@ function onShareImg() {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
     }
     doUploadImg(imgDataUrl, onSuccess)
+}
+
+function onDownloadCanvas(elLink) {
+    renderCanvas(false)
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
 }
 
 function backToGallery() {

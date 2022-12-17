@@ -36,15 +36,10 @@ function updateMeme(elImg, imgId) {
     }
 }
 
-function searchMeme(searchInput) {
-    setgFilter(searchInput)
-}
-
 //* GMEME UPDATES
 
 function setLineText(text) {
     gMeme.lines[gMeme.selectedLineIdx].text = text
-    // writeText(gMeme.selectedLineIdx)
 }
 
 function changeFontSize(diff) {
@@ -61,7 +56,6 @@ function changeFillColor(fillVal) {
 
 function changeFontFamily(font) {
     let line = gMeme.lines[gMeme.selectedLineIdx]
-    // console.log('line after = ', line)
     line.font = font
 }
 
@@ -73,6 +67,13 @@ function changeAlign(align) {
 function moveLine(diff) {
     let line = gMeme.lines[gMeme.selectedLineIdx]
     line.y += diff
+}
+
+function switchLine(diff) {
+    gMeme.selectedLineIdx += diff
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
+        gMeme.selectedLineIdx = 0
+    }
 }
 
 //* CHANGES ON GMEME.LINES
@@ -92,14 +93,6 @@ function addLineTogMeme(isEmptyLines) {
         y: yPos,
     })
     if (!isEmptyLines) gMeme.selectedLineIdx = gMeme.lines.length - 1;
-    // writeText(gMeme.selectedLineIdx)
-}
-
-function switchLine(diff) {
-    gMeme.selectedLineIdx += diff
-    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
-        gMeme.selectedLineIdx = 0
-    }
 }
 
 function deleteLine(selectedLineIdx) {
@@ -108,7 +101,6 @@ function deleteLine(selectedLineIdx) {
     const currlineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(line, 1)
     if (gMeme.lines.length) {
-        // renderCanvas()
         if (currlineIdx) {
             gMeme.selectedLineIdx = currlineIdx - 1;
         } else {

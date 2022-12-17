@@ -17,7 +17,7 @@
             <nav class="main-nav flex align-center">
                 <ul class="flex clean-list">
                     <li onclick="backToGallery()">Gallery</li>
-                    <li>About</li>
+                    <!-- <li>About</li> -->
                 </ul>
             </nav>
         </div>
@@ -27,14 +27,23 @@
 
         <form class="search-box grid" onsubmit="onSearchMeme(event)">
             <input class="search" type="search" name="meme-search" placeholder="Search by keyword">
-        </form>
+           
+            <button class="btn add-img">Add Image
+                <input onchange="onAddImg(event)" style="opacity: 0; position: relative; top: -20px; height: 40px;" type="file" class="file-input btn"/>
+               </button>
+
+            </form>
+
 
         <div class="searched-show flex">
             <span class="keys funny" id="funny" style="font-size: 24px;" onclick="filtergImgs(this.id)">Funny</span>
             <span class="keys trump" id="trump" style="font-size: 16px;" onclick="filtergImgs(this.id)">Trump</span>
-            <span class="keys spongebob" id="spongebob" style="font-size: 20px;" onclick="filtergImgs(this.id)">Spongebob</span>
-            <span class="keys cartoon" id="cartoon" style="font-size: 14px;" onclick="filtergImgs(this.id)">Cartoon</span>
-            <span class="keys animals" id="animals" style="font-size: 18px;" onclick="filtergImgs(this.id)">Animals</span>
+            <span class="keys spongebob" id="spongebob" style="font-size: 20px;"
+                onclick="filtergImgs(this.id)">Spongebob</span>
+            <span class="keys cartoon" id="cartoon" style="font-size: 14px;"
+                onclick="filtergImgs(this.id)">Cartoon</span>
+            <span class="keys animals" id="animals" style="font-size: 18px;"
+                onclick="filtergImgs(this.id)">Animals</span>
         </div>
 
         <div class="gallery-grid grid"></div>
@@ -98,26 +107,20 @@
                     <img class="icon" src="img/icons/align-right.png" alt=" ">
                 </button>
 
-                <button class="color btn" onclick="toggleColorPicker('fill-color')">
+                <button class="color btn" onclick="changeColor()">
                     <img class="icon" src="img/icons/stroke.png" alt=" ">
-                    <input hidden type="color" id="fill-color">
+                    <input style="opacity: 0; position: relative; top: -35px; height: 40px; width: 30px;" type="color" id="fill-color">
                 </button>
             </div>
 
-
-
-            <div class="stickers grid">
-                <article class="item item1">⭐️</article>
-                <article class="item item2">⭐️</article>
-                <article class="item item3">⭐️</article>
-                <article class="item item3">⭐️</article>
-                <article class="item item4">⭐️</article>
-            </div>
-
             <div class="meme-options">
-                <button class="share btn" onclick="onShareImg()">Share</button>
+                <button class="share btn" onclick="onShareImg()">
+                    <img class="icon" style="width: 20px; height: 20px;" src="img/icons/share.png" alt="">
+                    Share</button>
                 <button class="download btn">
-                    <a href="#" onclick="onDownloadCanvas(this)" download="my-img">Download</a>
+                    <a href="#" onclick="onDownloadCanvas(this)" download="my-meme">
+                        <img class="icon" style="width: 20px; height: 20px;" src="img/icons/download.png" alt="">
+                        Download</a>
                 </button>
             </div>
 
@@ -125,30 +128,31 @@
     </section>
 
     <section class="me full">
-            <div class="about-me grid">
-              <img class="me-img" src="img/me/me2.jpg" alt="">
+        <div class="about-me grid">
+            <img class="me-img" src="img/me/me2.jpg" alt="">
 
-                <div class="social-buttons">
+            <div class="social-buttons">
 
-                    <button class="btn">
-                        <a href="https://www.facebook.com/lihi2627/" target="_blank">
-                            <b class="fa facebook"></b>
-                        </a>
-                    </button>
-                    
-                    <button class="btn">
-                        <a href="https://www.linkedin.com/in/lihi-ben-shimol" target="_blank">
-                            <b class="fa linkedin"></b>
-                        </a>
-                    </button>
-                </div>
-        
+                <button class="btn">
+                    <a href="https://www.facebook.com/lihi2627/" target="_blank">
+                        <b class="fa facebook"></b>
+                    </a>
+                </button>
 
-          <div class="about-description">
-              <p class="name">Lihi Ben Shimol</p><p class="desc">I'm 24 years old from Tel Aviv,
-              currently a fullsatck development student at Coding Academy. <br>
-              I'm a fast and enthusiastic learner and I strive to fulfill and maximize myself in the field.</p>    
-          </div>
+                <button class="btn">
+                    <a href="https://www.linkedin.com/in/lihi-ben-shimol" target="_blank">
+                        <b class="fa linkedin"></b>
+                    </a>
+                </button>
+            </div>
+
+
+            <div class="about-description">
+                <p class="name">Lihi Ben Shimol</p>
+                <p class="desc">I'm 24 years old from Tel Aviv,
+                    currently a fullsatck development student at Coding Academy. <br>
+                    I'm a fast and enthusiastic learner and I strive to fulfill and maximize myself in the field.</p>
+            </div>
         </div>
     </section>
 

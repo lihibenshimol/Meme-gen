@@ -11,10 +11,6 @@ function onClearCanvas() {
     // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height/4)
 }
 
-function onDownloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL()
-    elLink.href = data 
-}
 
 function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)

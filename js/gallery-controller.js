@@ -10,7 +10,19 @@ function renderGallery() {
 }
 
 function filtergImgs(keyword) {
-console.log('keyword = ', keyword)
     searchMeme(keyword)
     renderGallery()
 }
+
+function onSearchMeme(ev) {
+    ev.preventDefault()
+    const elSearchInput = document.querySelector('.search')
+    const searchInput = elSearchInput.value
+    searchMeme(searchInput)
+    renderGallery()
+}
+
+function onAddImg(ev) {
+    loadImgFromInput(ev, addImg)
+}
+
