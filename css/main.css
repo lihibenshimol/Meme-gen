@@ -98,16 +98,17 @@ a {
 
 .main-layout>*:not(.full) {
     max-width: 1125px;
-    margin-inline-start: 4em;
+    margin: 0 auto;
+    /* margin-inline-start: 6em; */
 
 }
 
 /* HEADER */
 .main-header {
     padding-top: 10px;
-    /* background-color: rgb(68, 24, 68); */
     background-image: linear-gradient(16deg, #441844, #ef4700d9);
     border-radius: 35px;
+    padding-left: 50px;
 }
 
 .main-nav li {
@@ -119,7 +120,6 @@ a {
 }
 
 .logo img {
-    margin-inline-start: 70px;
     width: 20vw;
     height: 5vh;
     cursor: pointer;
@@ -130,7 +130,6 @@ a {
 .me {
     margin-top: 50px;
     background-color: #4f364feb;
-    /* background-image: linear-gradient(16deg,#a384a3, #e29c7ed9); */
     box-shadow: inset 1px 0px 4px 2px rgb(0 0 0 / 45%);
 }
 
@@ -157,7 +156,6 @@ a {
 }
 
 .social-buttons a {
-    /* background-color: var(--clr3); */
     border-radius: 50px;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
@@ -274,7 +272,6 @@ canvas {
     gap: 10px;
     grid-template-areas:
         "add delete switch select-font"
-        /* "select-font select-font select-font" */
     ;
 }
 
@@ -373,7 +370,6 @@ footer {
         grid-template-columns: repeat(auto-fit, 100px);
         grid-template-rows: repeat(2, 100px);
         gap: 10px;
-        /* color: #ffffff81; */
     }
 
     .searched-show {
