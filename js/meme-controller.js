@@ -7,11 +7,11 @@ function onInit() {
     gElCanvas = document.querySelector('.canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
+    renderSavedMemes() //todo move to onclick my-memes
 }
 
 function renderCanvas(withRect = true) {
     var meme = getgMeme()
-    // document.querySelector('.text-editor').placeholder = meme.lines[meme.selectedLineIdx].text
     document.querySelector('.text-editor').value = meme.lines[meme.selectedLineIdx].text
     const y = meme.lines[meme.selectedLineIdx].y
     var img = getImg()
@@ -24,24 +24,16 @@ function drawImg(elImg) {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderMeme() { //img and default text
-    // switchLine(0)
-    writeText()
-}
-
 function openEditor(elImg, imgId) {
-    if (document.querySelector('.editor-container').classList.contains('hide')) {
-        document.querySelector('.editor-container').classList.add('flex')
-        document.querySelector('.gallery-container').classList.add('hide')
-        document.querySelector('.me').classList.remove('grid')
-        document.querySelector('.me').classList.add('hide')
-    }
+    console.log('other = ', elImg)
+    // if (document.querySelector('.editor-container').classList.contains('hide')) 
+    showEditorController()
     drawImg(elImg)
     updateMeme(elImg, imgId)
     renderCanvas()
 }
 
-function writeText() {
+function writeText(savedMeme = false) {
     let meme = getgMeme()
     let memeLines = meme.lines
 
@@ -56,6 +48,47 @@ function writeText() {
     })
 }
 
+//* SAVED MEMES
+
+function onSaveMeme() {
+    alert('Saved! check out your meme at "My Memes"')
+    saveMeme()
+    renderSavedMemes()
+}
+
+function openEditorFromSave(elImg, imgId, idx) {
+console.log('elImg = ', elImg)
+console.log('imgId = ', imgId)
+    const meme = gSavedMemes[idx]
+    meme.elImg = elImg
+    meme.selectedImgId = imgId
+
+    showEditorController()
+    setgMeme(meme)
+    drawImg(elImg)
+    renderCanvas()
+}
+
+function renderSavedMemes() {
+    const savedMemes = getSavedMemes()
+    if (!savedMemes) {
+        strHTML = `No saved memes yet`
+    }
+    if (savedMemes) {
+        var strHTML = savedMemes.map((meme, idx) => {
+            return `<button class="btn delete-saved" onclick="onDeleteSavedMeme(${idx})"> X
+            <img class="saved-meme"  id="${meme.selectedImgId}" src="img/${meme.selectedImgId}.png" onclick="openEditorFromSave(this,this.id,${idx})">
+            </button>`
+        }).join('')
+    }
+    document.querySelector('.saved-memes').innerHTML = strHTML
+}
+
+function onDeleteSavedMeme(idx) {
+    deleteSavedMeme(idx)
+    renderSavedMemes()
+}
+
 //* SETTINGS ON TEXT
 
 function onSetLineText(text) {
@@ -63,12 +96,9 @@ function onSetLineText(text) {
     renderCanvas()
 }
 
-function changeColor() {
-    var color = document.getElementById('fill-color')
-    color.addEventListener('input', function (e) {
-        changeFillColor(this.value)
-        renderCanvas()
-    })
+function onChangeColor(color) {
+    changeFillColor(color)
+    renderCanvas()
 }
 
 function onChangeFontSize(diff) {
@@ -77,7 +107,6 @@ function onChangeFontSize(diff) {
 }
 
 function onChangeFontFamily(font) {
-    console.log('font = ', font)
     changeFontFamily(font)
     renderCanvas()
 }
@@ -97,7 +126,6 @@ function drawRect(x, y) {
     gCtx.fillStyle = '#ffffff81'
     gCtx.fillRect(x, y, gElCanvas.width, 50)
     gCtx.strokeStyle = 'black'
-   
     gCtx.strokeRect(x, y, gElCanvas.width, 50)
 }
 
@@ -113,8 +141,8 @@ function onSwitchLine(diff) {
 }
 
 function onDeleteLine() {
-    console.log('gMeme.lines = ', gMeme.lines)
     var selectedLineIdx = getSelectedLineIdx()
+    console.log('selectedLineIdx = ', selectedLineIdx)
     deleteLine(selectedLineIdx)
     renderCanvas()
 }
@@ -149,10 +177,30 @@ function onDownloadCanvas(elLink) {
     elLink.href = data
 }
 
+function showMyMemes() {
+    renderSavedMemes()
+    document.querySelector('.gallery-container').classList.add('hide')
+    document.querySelector('.editor-container').classList.replace('flex', 'hide')
+    document.querySelector('.saved-memes').classList.replace('hide', 'grid')
+    document.querySelector('.me').classList.remove('grid')
+    document.querySelector('.me').classList.add('hide')
+}
+
+function showEditorController() {
+    document.querySelector('.editor-container').classList.add('flex')
+    document.querySelector('.gallery-container').classList.add('hide')
+    document.querySelector('.me').classList.remove('grid')
+    document.querySelector('.me').classList.add('hide')
+    document.querySelector('.saved-memes').classList.replace('grid', 'hide')
+
+}
+
 function backToGallery() {
     if (document.querySelector('.gallery-container').classList.contains('hide')) {
         document.querySelector('.gallery-container').classList.remove('hide')
         document.querySelector('.me').classList.replace('hide', 'grid')
+        document.querySelector('.editor-container').classList.replace('flex', 'hide')
+        document.querySelector('.saved-memes').classList.replace('grid', 'hide')
     }
-    document.querySelector('.editor-container').classList.replace('flex', 'hide')
+
 }

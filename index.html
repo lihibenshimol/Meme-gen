@@ -17,14 +17,19 @@
             <nav class="main-nav flex align-center">
                 <ul class="flex clean-list">
                     <li onclick="backToGallery()">Gallery</li>
-                    <!-- <li>About</li> -->
+                    <li onclick="showMyMemes()">My Memes</li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="gallery-container">
+    <section class="saved-memes hide">
+    </section>
 
+
+    </section>
+
+    <section class="gallery-container">
         <form class="search-box grid" onsubmit="onSearchMeme(event)">
             <input class="search" type="search" name="meme-search" placeholder="Search by keyword">
            
@@ -57,14 +62,14 @@
             <input oninput="onSetLineText(this.value)" class="text-editor" type="text" placeholder="Enter text here..">
             <div class="btns-editor grid">
 
-                <button class="add btn" onclick="onAddLineTogMeme()">
+                <button class="add btn" title="Add Line" onclick="onAddLineTogMeme()">
                     <img class="icon" src="img/icons/new.png" alt="">
                 </button>
 
-                <button class="delete btn" onclick="onDeleteLine()">
+                <button class="delete btn" title="Delete Line" onclick="onDeleteLine()">
                     <img class="icon" src="img/icons/trash.png" alt="">
                 </button>
-                <button class="switch btn" onclick="onSwitchLine(1)">
+                <button class="switch btn" title="Switch Line" onclick="onSwitchLine(1)">
                     <img class="icon" src="img/icons/upDown.png" alt="">
                 </button>
                 <select onchange="onChangeFontFamily(this.value)" class="select-fonts">
@@ -79,37 +84,37 @@
             </div>
 
             <div class="style-editor grid">
-                <button class=" font1 btn" onclick="onChangeFontSize(2)">
+                <button class=" font1 btn" title="Increase font" onclick="onChangeFontSize(2)">
                     <img class="icon" src="img/icons/plus.png" alt=" ">
                 </button>
 
-                <button class="font2 btn" onclick="onChangeFontSize(-2)">
+                <button class="font2 btn" title="Decrease font" onclick="onChangeFontSize(-2)">
                     <img class="icon" src="img/icons/minus.png" alt=" ">
                 </button>
 
-                <button class="move1 btn" onclick="onMoveLine(-5)">
+                <button class="move1 btn" title="Move Line Up" onclick="onMoveLine(-5)">
                     <img class="icon" src="img/icons/arrow-up.png" alt=" ">
                 </button>
 
-                <button class="move2 btn" onclick="onMoveLine(5)">
+                <button class="move2 btn" title="Move Line Down" onclick="onMoveLine(5)">
                     <img class="icon" src="img/icons/arrow-down.png" alt=" ">
                 </button>
 
-                <button class="align1 btn" onclick="onChangeAlign(this.id)" id="left">
+                <button class="align1 btn" title="Align Left" onclick="onChangeAlign(this.id)" id="left">
                     <img class="icon" src="img/icons/align-left.png" alt=" ">
                 </button>
 
-                <button class="align2 btn" onclick="onChangeAlign(this.id)" id="center">
+                <button class="align2 btn" title="Align Center" onclick="onChangeAlign(this.id)" id="center">
                     <img class="icon" src="img/icons/align-center.png" alt=" ">
                 </button>
 
-                <button class="align3 btn" onclick="onChangeAlign(this.id)" id="right">
+                <button class="align3 btn" title="Align Right" onclick="onChangeAlign(this.id)" id="right">
                     <img class="icon" src="img/icons/align-right.png" alt=" ">
                 </button>
 
-                <button class="color btn" onclick="changeColor()">
-                    <img class="icon" src="img/icons/stroke.png" alt=" ">
-                    <input style="opacity: 0; position: relative; top: -35px; height: 40px; width: 30px;" type="color" id="fill-color">
+                <button class="color btn">
+                    <img class="icon"  title="Change Color" src="img/icons/stroke.png" alt=" ">
+                    <input oninput="onChangeColor(this.value)" style="opacity: 0; position: relative; top: -35px; height: 40px; width: 30px;" type="color" id="fill-color">
                 </button>
             </div>
 
@@ -121,6 +126,10 @@
                     <a href="#" onclick="onDownloadCanvas(this)" download="my-meme">
                         <img class="icon" style="width: 20px; height: 20px;" src="img/icons/download.png" alt="">
                         Download</a>
+                </button>
+
+                <button class="save btn" onclick="onSaveMeme(this)">
+                    Save
                 </button>
             </div>
 

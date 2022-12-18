@@ -2,19 +2,13 @@
 
 function renderGallery() {
     const imgs = getgImgs()
-    var strHTML = '';
-    imgs.forEach((img, idx) => {
-        strHTML += `<img class="gallery-img" id="${idx + 1}" src="${img.url}" alt="" onclick="openEditor(this, this.id)">`
-    });
+    var strHTML = imgs.map((img, idx) => {
+        return `<img class="gallery-img" id="${idx + 1}" src="${img.url}" alt="" onclick="openEditor(this, this.id)">`
+    }).join('')
     document.querySelector('.gallery-grid').innerHTML = strHTML
 }
 
 function filtergImgs(keyword) {
-    console.log('size = ', size)
-    var size = document.querySelector('.keys').style.fontSize
-    size += `${size}px`
-    console.log('size = ', size)
-    // document.querySelector('.keys').style.fontSize += size
     searchMeme(keyword)
     renderGallery()
 }

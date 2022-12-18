@@ -4,6 +4,9 @@
 var gImgs
 var gMeme
 var gFontSize = 40
+var gSavedMemes = []
+
+const STORAGE_KEY = 'savedMemesDB'
 
 function updateMeme(elImg, imgId) {
     let elCanvas = getgElCanvas();
@@ -34,6 +37,25 @@ function updateMeme(elImg, imgId) {
             }
         ]
     }
+}
+
+function saveMeme() {
+    if (!gSavedMemes || !gSavedMemes.length) {
+        gSavedMemes = [ ]
+    }
+    gSavedMemes.push(gMeme)
+    _saveMemeToStorage()
+}
+
+function getSavedMemes() {
+    gSavedMemes = loadFromStorage(STORAGE_KEY)
+    return gSavedMemes
+}
+
+function deleteSavedMeme(memeIdx) {
+    const meme = gSavedMemes[memeIdx]
+    gSavedMemes.splice(meme, 1)
+    _saveMemeToStorage()
 }
 
 //* GMEME UPDATES
@@ -112,6 +134,11 @@ function deleteLine(selectedLineIdx) {
 
 //* GENERAL
 
+function setgMeme(meme) {
+    gMeme = meme
+    return gMeme
+}
+
 function getgMeme() {
     return gMeme
 }
@@ -122,4 +149,8 @@ function getSelectedLineIdx() {
 
 function getImg() {
     return gMeme.elImg
+}
+
+function _saveMemeToStorage() {
+    saveToStorage(STORAGE_KEY, gSavedMemes)
 }

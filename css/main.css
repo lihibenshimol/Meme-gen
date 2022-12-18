@@ -15,10 +15,6 @@
 
 /* TYPOHGRAPHY */
 
-/* @font-face {
-    font-family: i;
-    src: url(../css/fonts/impact/impact.ttf);
-} */
 
 @font-face {
     font-family: montserrat;
@@ -109,6 +105,7 @@ a {
     background-image: linear-gradient(16deg, #441844, #ef4700d9);
     border-radius: 35px;
     padding-left: 50px;
+    margin-bottom: 20px;
 }
 
 .main-nav li {
@@ -116,7 +113,7 @@ a {
     padding: 20px;
     color: var(--clr1);
     cursor: pointer;
-    margin-inline-end: 50px;
+    /* margin-inline-end: 50px; */
 }
 
 .logo img {
@@ -160,6 +157,38 @@ a {
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     font-size: 1em;
+}
+
+/* SAVED MEMES */
+
+.saved-memes {
+    width: 70vw;
+    height: 80vh;
+    grid-template-columns: repeat(auto-fit, 150px);
+    grid-template-rows: repeat(auto-fit, 150px);
+    gap: 10px;
+    background-color: #4f364feb;
+    box-shadow: inset 1px 0px 4px 2px rgb(0 0 0 / 45%);
+    padding: 20px;
+}
+
+.saved-meme {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    transition: .4s;
+}
+
+.saved-meme:hover {
+    border: inset 3px rgba(131, 131, 131, 0.272);
+}
+
+.delete-saved {
+    position: relative;
+    left: -5%;
+    top: -10%;
+    height: 20px;
+    width: 20px;
 }
 
 /* GALLERY */
@@ -306,6 +335,7 @@ footer {
     background-color: var(--clr0);
     text-align: center;
     color: var(--clr3);
+    margin-top: 20px;
 }
 
 /* HELPERS */
@@ -378,6 +408,11 @@ footer {
 
     .search {
         min-width: 15rem;
+    }
+
+    .saved-meme {
+        width: 100px;
+        height: 100px;
     }
 
     .canvas {
